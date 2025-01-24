@@ -5,14 +5,12 @@
 #include <string>
 
 class Database {
+    sqlite3* db;
 public:
     Database(const std::string& dbPath);
     ~Database();
     sqlite3* getConnection();
     void initialize(const std::string& schemaPath);
-
-private:
-    sqlite3* db;
 };
 
 #endif

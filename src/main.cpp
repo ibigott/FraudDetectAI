@@ -7,6 +7,7 @@ int main() {
     sqlite3* dbConnection = db.getConnection();
     if (!dbConnection) {return 1;}
     int option = 0;
+    db.initialize("/Users/ignatius/Desktop/FraudDetectAI/database/schema.sql");
     while (true) {
         std::cout << std::endl << "===== FraudDetectAI Banking System =====" << std::endl;
         std::cout << "1. Create a New Bank" << std::endl;

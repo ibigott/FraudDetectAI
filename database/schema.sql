@@ -1,5 +1,7 @@
-CREATE TABLE Banks (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    location TEXT
+CREATE TABLE banks (
+    id INT PRIMARY KEY,
+    name VARCHAR(18),
+    location VARCHAR(18),
+    swiftCode VARCHAR(8),
+    dateCreated DATE
 );

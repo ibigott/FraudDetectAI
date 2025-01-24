@@ -3,8 +3,6 @@
 
 class Algorithms {
 public:
-
-private:
     
 };
 

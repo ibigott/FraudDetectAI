@@ -21,20 +21,6 @@ sqlite3* Database::getConnection() {
 }
 
 void Database::initialize(const std::string& schemaPath) {
-    const char* checkTableSQL = "SELECT name FROM sqlite_master WHERE type='table' AND name='Banks';";
-    sqlite3_stmt* stmt;
-    int rc = sqlite3_prepare_v2(db, checkTableSQL, -1, &stmt, nullptr);
-    if (rc != SQLITE_OK) {
-        std::cerr << "Failed to check table existence: " << sqlite3_errmsg(db) << std::endl;
-        return;
-    }
-    rc = sqlite3_step(stmt);
-    bool tableExists = (rc == SQLITE_ROW);
-    sqlite3_finalize(stmt);
-    if (tableExists) {
-        std::cout << "Table 'Banks' already exists. No need to initialize." << std::endl;
-        return;
-    }
     std::ifstream schemaFile(schemaPath);
     if (!schemaFile) {
         std::cerr << "Failed to open schema file: " << schemaPath << std::endl;
@@ -44,12 +30,10 @@ void Database::initialize(const std::string& schemaPath) {
     buffer << schemaFile.rdbuf();
     std::string schemaSQL = buffer.str();
     char* errMsg = nullptr;
-    rc = sqlite3_exec(db, schemaSQL.c_str(), nullptr, nullptr, &errMsg);
+    int rc = sqlite3_exec(db, schemaSQL.c_str(), nullptr, nullptr, &errMsg);
     if (rc != SQLITE_OK) {
         std::cerr << "Failed to execute schema SQL: " << errMsg << std::endl;
         sqlite3_free(errMsg);
     } 
-    else {
-        std::cout << "Database initialized successfully with schema." << std::endl;
-    }
+    else {std::cout << "Database initialized successfully with schema." << std::endl;}
 }

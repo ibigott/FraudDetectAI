@@ -5,7 +5,7 @@
 #include "database.h"
 
 class Bank {    
-    public:
+public:
     static void createBank(sqlite3* db);
 };
 
