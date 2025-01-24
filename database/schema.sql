@@ -1,0 +1,5 @@
+CREATE TABLE Banks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    location TEXT
+);
