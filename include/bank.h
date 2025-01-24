@@ -2,19 +2,11 @@
 #define BANK_H
 
 #include <string>
-
-using namespace std;
+#include "database.h"
 
 class Bank {    
     public:
-        Bank();
-        ~Bank();
-        int getId();
-        void setId(int id);
-        string getName();
-        void setName(string name);
-        string getLocation();
-        void setLocation(string location);
+    static void createBank(sqlite3* db);
 };
 
 #endif
